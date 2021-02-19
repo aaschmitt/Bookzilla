@@ -12,6 +12,12 @@ public class MainActivity extends AppCompatActivity {
 
         // Hello world :)
 
+<<<<<<< Updated upstream
         // Comment #2
+=======
+        //hehe
+
+
+>>>>>>> Stashed changes
     }
 }
