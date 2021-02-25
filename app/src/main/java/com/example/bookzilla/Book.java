@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Book {
 
-    /* Instance Variables */
+    /* Instance Variables - - - - - - - - - - - - - - - - - - - - - */
     private String title;
     private String author;
     private String externalLink;
@@ -19,7 +19,19 @@ public class Book {
         //TODO define all the different statuses here
     }
 
-    /* Getters and Setters */
+    /* Constructor(s) - - - - - - - - - - - - - - - - - - - - - - */
+    public Book() {
+        genres = new ArrayList<Genre>();
+    }
+
+    public Book(String title, String author, String externalLink) {
+        this.title = title;
+        this.author = author;
+        this.externalLink = externalLink;
+        genres = new ArrayList<Genre>();
+    }
+
+    /* Getters and Setters - - - - - - - - - - - - - - - - - - - - */
     public void setTitle(String title) {
         this.title = title;
     }

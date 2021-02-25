@@ -4,12 +4,28 @@ import java.util.ArrayList;
 
 public class UserProfile {
 
-    /* Instance Variables */
+    /* Instance Variables - - - - - - - - - - - - - - - - - - */
     private String username;
     private String name;
     private ArrayList<Book> books;
 
-    /* Getters and Setters */
+    /* Constructor(s) - - - - - - - - - - - - - - - - - - - - */
+    public UserProfile(String name, String username) {
+        this.name = name;
+        this.username = username;
+        books = new ArrayList<Book>();
+    }
+
+    /* Public methods - - - - - - - - - - - - - - - - - - - - */
+    public void AddBook(Book book) {
+        books.add(book);
+    }
+
+    public void RemoveBook(Book book) {
+        books.remove(book);
+    }
+
+    /* Getters and Setters - - - - - - - - - - - - - - - - - */
     public String getUsername() {
         return username;
     }
