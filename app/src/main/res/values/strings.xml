@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Bookzilla</string>
+    <string name="addBook_button">Add Book to Favorites</string>
+    <string name="TEMP_gotoBookView_button">Go To BookView</string>
 </resources>

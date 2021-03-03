@@ -12,11 +12,11 @@ public class Book {
     private Status currentStatus;
 
     public enum Genre {
-        //TODO define all the different genres here
+        //TODO: define all the different genres here
     }
 
     public enum Status {
-        //TODO define all the different statuses here
+        //TODO: define all the different statuses here
     }
 
     /* Constructor(s) - - - - - - - - - - - - - - - - - - - - - - */

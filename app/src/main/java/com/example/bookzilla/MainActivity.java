@@ -1,6 +1,7 @@
 package com.example.bookzilla;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -68,7 +69,12 @@ public class MainActivity extends AppCompatActivity {
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
     /*-------------end for the code of dropdownBox---------------*/
+    }
 
+    // TODO code for the button that navigates to the BookViewActivity -- delete when another way of navigation has been developed
+    public void onGotoBookViewClick(View view) {
+        Intent intent = new Intent(this, BookViewActivity.class);
+        startActivity(intent);
     }
 
 }
