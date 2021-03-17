@@ -1,6 +1,5 @@
 package com.example.bookzilla;
 
-import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,6 +10,8 @@ public class BookViewActivity extends AppCompatActivity {
 
     private Book book;
     private UserProfile currentUserProfile;
+
+    private int toastDuration = 2;
 
     private final String CURRENTBOOK = "Current Book: ";
     private final String CURRENTUSER = "Current User: ";
@@ -37,16 +38,14 @@ public class BookViewActivity extends AppCompatActivity {
     /* Adds the book currently being displayed to the user's book list, if not already in it */
     public void onAddBookButtonClick(View view) {
         // If userprofile or book is null, display an error message
-        if (book == null || currentUserProfile == null) {
-            Toast toast = Toast.makeText(this, "Failed -- Book or UserProfile is null!", 2);
-            toast.show();
+        if (isUserOrBookNull()) {
             return;
         }
 
         // Check to see if book is already in the user's list
         for (Book book : currentUserProfile.getBooks()) {
             if (this.book.getTitle() == book.getTitle() && this.book.getAuthor() == book.getAuthor()) {
-                Toast toast = Toast.makeText(this, "This book is already in your list!", 2);
+                Toast toast = Toast.makeText(this, book.getTitle() + " is already in your Favorites!", toastDuration);
                 toast.show();
                 return;
             }
@@ -54,11 +53,39 @@ public class BookViewActivity extends AppCompatActivity {
 
         // Book not found in user's list, add it
         currentUserProfile.AddBook(book);
-        Toast toast = Toast.makeText(this, "This book was successfully added to your list", 2);
+        Toast toast = Toast.makeText(this, book.getTitle() + " was added to Favorites", toastDuration);
         toast.show();
 
         // Display a different book
         setBook(new Book("SecondBook", "Audrey Schmitt", "www.mywebsite.com"));
+    }
+
+    /* Removes the book currently being displayed to the user's book list, if in the list */
+    public void onRemoveBookButtonClick(View view) {
+        if (isUserOrBookNull()) {
+            return;
+        }
+
+        for (Book book : currentUserProfile.getBooks()) {
+            if (this.book.getTitle() == book.getTitle() && this.book.getAuthor() == book.getAuthor()) {
+                currentUserProfile.RemoveBook(book);
+                Toast toast = Toast.makeText(this, "Removed " + book.getTitle() + " from Favorites", toastDuration);
+                toast.show();
+                return;
+            }
+        }
+
+        Toast toast = Toast.makeText(this, book.getTitle() + " is not in your Favorites!", toastDuration);
+        toast.show();
+    }
+
+    private boolean isUserOrBookNull() {
+        if (book == null || currentUserProfile == null) {
+            Toast toast = Toast.makeText(this, "Failed -- Book or UserProfile is null!", 2);
+            toast.show();
+            return true;
+        }
+        return false;
     }
 
     /* Set the current UserProfile and reload page */

@@ -46,4 +46,12 @@ public class UserProfile {
         return books;
     }
 
+    public ArrayList<String> getBookTitles() {
+        ArrayList<String> titles = new ArrayList<String>();
+        for (Book book : books) {
+            titles.add(book.getTitle());
+        }
+        return titles;
+    }
+
 }

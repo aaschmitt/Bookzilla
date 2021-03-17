@@ -77,4 +77,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    // TODO code for the button that navigates to the UserProfilePageActivity -- delete when another way of navigation has been developed
+    public void onGotoUserProfileClick(View view) {
+        Intent intent = new Intent(this, UserProfilePageActivity.class);
+        startActivity(intent);
+    }
+
 }
