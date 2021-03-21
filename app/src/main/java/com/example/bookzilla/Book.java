@@ -17,6 +17,10 @@ public class Book {
 
     public enum Status {
         //TODO: define all the different statuses here
+        Read,
+        Reading,
+        Wishlist
+
     }
 
     /* Constructor(s) - - - - - - - - - - - - - - - - - - - - - - */

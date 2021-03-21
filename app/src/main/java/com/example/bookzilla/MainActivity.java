@@ -3,10 +3,7 @@ package com.example.bookzilla;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.Toast;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -15,6 +12,9 @@ import java.util.List;
 
 class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
 
+    Book book = new Book();
+
+    WishlistActivity wishlistActivity = new WishlistActivity();
 
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         // On selecting a spinner item
@@ -25,16 +25,24 @@ class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedList
 
         //this is working code we need a book class, so we can get the book name
         if(item.equals("Wishlist")){
-            //add to Wishlist
+           book.setStatus(Book.Status.Wishlist);
         }
-        else {
-            //if book was in wishlist then remove it
-           // wishlist.remove("Book");
+        else if (item.equals("Reading")){
+            if(book.getCurrentStatus() == Book.Status.Wishlist){
+                wishlistActivity.removeBook(book);
+            }
+            book.setStatus(Book.Status.Reading);
+        }
+        else if(item.equals("Read")){
+            if(book.getCurrentStatus() == Book.Status.Wishlist){
+                wishlistActivity.removeBook(book);
+            }
+            book.setStatus(Book.Status.Read);
         }
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
-        // Another interface callback
+        // idk what needs to be done when nothing is selected
     }
 }
 
@@ -80,6 +88,11 @@ public class MainActivity extends AppCompatActivity {
     // TODO code for the button that navigates to the UserProfilePageActivity -- delete when another way of navigation has been developed
     public void onGotoUserProfileClick(View view) {
         Intent intent = new Intent(this, UserProfilePageActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToWishlist(){
+        Intent intent = new Intent(this, WishlistActivity.class);
         startActivity(intent);
     }
 
