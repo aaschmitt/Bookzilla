@@ -57,7 +57,7 @@ public class BookViewActivity extends AppCompatActivity {
         toast.show();
 
         // Display a different book
-        setBook(new Book("SecondBook", "Audrey Schmitt", "www.mywebsite.com"));
+        setBook(new Book("To Kill A Mockingbird", "Audrey Schmitt", "www.mywebsite.com"));
     }
 
     /* Removes the book currently being displayed to the user's book list, if in the list */
