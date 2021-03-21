@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void goToWishlist(){
+    public void goToWishlist(View view){
         Intent intent = new Intent(this, WishlistActivity.class);
         startActivity(intent);
     }

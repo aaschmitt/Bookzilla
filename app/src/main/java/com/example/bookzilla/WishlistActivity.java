@@ -1,11 +1,11 @@
 package com.example.bookzilla;
 
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+
 import java.util.ArrayList;
 
-/**
- * this class is to look at the wishlist and the activity's added to the wishlist
- */
-public class WishlistActivity {
+public class WishlistActivity extends AppCompatActivity {
 
     ArrayList<Book> books = new ArrayList<>();
 
@@ -19,4 +19,11 @@ public class WishlistActivity {
         books.add(book);
     }
 
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_wishlist);
+    }
 }

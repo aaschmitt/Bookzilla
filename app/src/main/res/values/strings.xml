@@ -5,4 +5,6 @@
     <string name="removeBook_button">Remove from Favorites</string>
     <string name="TEMP_gotoUserProfileView_button">Go To UserProfile</string>
     <string name="TEMP_changeUserProfile">Change Current User</string>
+    <string name="wishlist">Wishlist Page</string>
+    <string name="go_to_wishlist">Go TO Wishlist</string>
 </resources>
