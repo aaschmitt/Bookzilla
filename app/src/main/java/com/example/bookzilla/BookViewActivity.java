@@ -55,7 +55,10 @@ public class BookViewActivity extends AppCompatActivity {
         currentUserProfile.AddBook(book);
         Toast toast = Toast.makeText(this, book.getTitle() + " was added to Favorites", toastDuration);
         toast.show();
+    }
 
+    //TODO demo method -- displays functionality for viewing a different book in the bookview activity
+    public void onViewAnotherBookButtonClick(View view) {
         // Display a different book
         setBook(new Book("To Kill A Mockingbird", "Audrey Schmitt", "www.mywebsite.com"));
     }
