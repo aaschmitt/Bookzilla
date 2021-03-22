@@ -6,13 +6,4 @@
     android:background="#7F39FB"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WishlistActivity">
-
-
-  <ImageView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content" app:srcCompat="@drawable/review"
-          android:id="@+id/imageView" app:layout_constraintTop_toTopOf="parent"
-          android:layout_marginTop="8dp" app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    tools:context=".WishlistActivity"/>
