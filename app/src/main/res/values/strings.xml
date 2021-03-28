@@ -8,4 +8,9 @@
     <string name="wishlist">Wishlist Page</string>
     <string name="go_to_wishlist">Go TO Wishlist</string>
     <string name="TEMP_viewAnotherBook_button">View Another Book</string>
+    <string name="TEMP_ChangeCurrentUser_button">Change Current User</string>
+    <string name="TEMP_createNewUserButton">Create New UserProfile</string>
+    <string name="TEMP_chooseExistingUserProfile">Choose Existing UserProfile</string>
+    <string name="TEMP_name">Name:</string>
+    <string name="TEMP_username">Username:</string>
 </resources>
