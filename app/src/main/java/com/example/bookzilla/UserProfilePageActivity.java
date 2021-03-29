@@ -1,8 +1,11 @@
 package com.example.bookzilla;
 
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +17,7 @@ public class UserProfilePageActivity extends AppCompatActivity {
     private UserProfile currentUserProfile;
 
     private final String CURRENTUSERSTR = "CURRENT USER: ";
+    ArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +46,7 @@ public class UserProfilePageActivity extends AppCompatActivity {
     private void ConfigureDisplay(UserProfile userProfile) {
         // Update list of books
         listView = (ListView) findViewById(R.id.listView);
-        ArrayAdapter adapter = new ArrayAdapter<String>(
+        adapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_1,
                 userProfile.getBookTitles()
@@ -67,5 +71,29 @@ public class UserProfilePageActivity extends AppCompatActivity {
         // TODO -----------------------------------------------------------------------------------------------
 
         SetCurrentUserProfile(newUser);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.my_menu, menu);
+        MenuItem menuItem =menu.findItem(R.id.search_icon);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Search");
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return true;
+            }
+        }); {
+
+        }
+        return super.onCreateOptionsMenu(menu);
     }
 }
