@@ -8,6 +8,7 @@ public class Book {
     private String title;
     private String author;
     private String externalLink;
+    private UserReviews review;
     private ArrayList<Genre> genres;
     private Status currentStatus;
 
@@ -28,9 +29,19 @@ public class Book {
         genres = new ArrayList<Genre>();
     }
 
+    public Book(String title, String author) {
+        this.title = title;
+        this.author = author;
+        this.review = null;
+        this.externalLink = null;
+        genres = new ArrayList<Genre>();
+    }
+
+
     public Book(String title, String author, String externalLink) {
         this.title = title;
         this.author = author;
+        this.review = null;
         this.externalLink = externalLink;
         genres = new ArrayList<Genre>();
     }
@@ -70,5 +81,9 @@ public class Book {
 
     public void setStatus(Status newStatus) {
         currentStatus = newStatus;
+    }
+
+    public UserReviews getReview(){
+        return review;
     }
 }

@@ -1,4 +1,4 @@
-//MCG 2-21-2021
+package com.example.bookzilla;//MCG 2-21-2021
 import java.io.File;    //Eventually we are going to want to save this info to a text file I believe
 
 public class UserReviews {
@@ -11,7 +11,7 @@ public class UserReviews {
             return writtenReview;
         }
 
-        private int getCharacterCount() {    //Return length of written review minus number of spaces.
+        private int getCharacterCountNoSpace() {    //Return length of written review minus number of spaces.
             int spaceCount = 0;
             for (char ch : writtenReview.toCharArray()) {
                 if (ch == ' ') {
@@ -19,6 +19,10 @@ public class UserReviews {
                 }
             }
             return writtenReview.length() - spaceCount;
+        }
+
+        private int getCharCount(){
+            return writtenReview.length();
         }
 
         /*
