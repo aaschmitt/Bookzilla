@@ -57,10 +57,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        UpdateCurrentUserTextView();
 
         SpinnerActivity spinnerActivity = new SpinnerActivity();
-
-        // Hello world :)
         
 /*-------------------Start Code for dropdownBox-----------*/
         Spinner spinner = findViewById(R.id.status);
@@ -120,6 +119,16 @@ public class MainActivity extends AppCompatActivity {
     public void goToWishlist(View view){
         Intent intent = new Intent(this, WishlistActivity.class);
         startActivity(intent);
+    }
+
+    private void UpdateCurrentUserTextView() {
+        TextView userProfileText = (TextView) findViewById(R.id.currentUserTextView);
+        if (CurrentUserProfile.profile == null) {
+            userProfileText.setText("CURRENT USER: NULL");
+        }
+        else {
+            userProfileText.setText("CURRENT USER: " + CurrentUserProfile.profile.getName());
+        }
     }
 
    /* public boolean onCreateOptionsMenu(Menu menu) {
