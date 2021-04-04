@@ -9,7 +9,6 @@ import android.os.Bundle;
 public class BookViewActivity extends AppCompatActivity {
 
     private Book book;
-    private UserProfile currentUserProfile;
 
     private int toastDuration = 2;
 
@@ -22,7 +21,6 @@ public class BookViewActivity extends AppCompatActivity {
 
         // TODO DELETE THIS BOOK AND USER (THEY WERE USED FOR TESTING) ------------------------------------------------------
         book = new Book("Catcher in The Rye", "J.D. Salinger", "www.amazon.com/catcher_in_the_rye");
-        currentUserProfile = new UserProfile("Audrey", "audrey123");
         // TODO -------------------------------------------------------------------------------------------------------------
 
         ConfigureDisplays();
@@ -43,7 +41,7 @@ public class BookViewActivity extends AppCompatActivity {
         }
 
         // Check to see if book is already in the user's list
-        for (Book book : currentUserProfile.getBooks()) {
+        for (Book book : CurrentUserProfile.profile.getBooks()) {
             if (this.book.getTitle() == book.getTitle() && this.book.getAuthor() == book.getAuthor()) {
                 Toast toast = Toast.makeText(this, book.getTitle() + " is already in your Favorites!", toastDuration);
                 toast.show();
@@ -52,7 +50,7 @@ public class BookViewActivity extends AppCompatActivity {
         }
 
         // Book not found in user's list, add it
-        currentUserProfile.AddBook(book);
+        CurrentUserProfile.profile.AddBook(book);
         Toast toast = Toast.makeText(this, book.getTitle() + " was added to Favorites", toastDuration);
         toast.show();
     }
@@ -69,9 +67,9 @@ public class BookViewActivity extends AppCompatActivity {
             return;
         }
 
-        for (Book book : currentUserProfile.getBooks()) {
+        for (Book book : CurrentUserProfile.profile.getBooks()) {
             if (this.book.getTitle() == book.getTitle() && this.book.getAuthor() == book.getAuthor()) {
-                currentUserProfile.RemoveBook(book);
+                CurrentUserProfile.profile.RemoveBook(book);
                 Toast toast = Toast.makeText(this, "Removed " + book.getTitle() + " from Favorites", toastDuration);
                 toast.show();
                 return;
@@ -83,18 +81,12 @@ public class BookViewActivity extends AppCompatActivity {
     }
 
     private boolean isUserOrBookNull() {
-        if (book == null || currentUserProfile == null) {
+        if (book == null || CurrentUserProfile.profile == null) {
             Toast toast = Toast.makeText(this, "Failed -- Book or UserProfile is null!", 2);
             toast.show();
             return true;
         }
         return false;
-    }
-
-    /* Set the current UserProfile and reload page */
-    public void setCurrentUserProfile(UserProfile currentUserProfile) {
-        this.currentUserProfile = currentUserProfile;
-        ConfigureUserProfileDisplay();
     }
 
     /* Set the current book and reload page */
@@ -117,11 +109,11 @@ public class BookViewActivity extends AppCompatActivity {
     /* Refresh the UserProfile UI */
     private void ConfigureUserProfileDisplay() {
         TextView textView = (TextView) findViewById(R.id.textView3);
-        if (currentUserProfile == null) {
+        if (CurrentUserProfile.profile == null) {
             textView.setText(CURRENTUSER + "NULL");
         }
         else {
-            textView.setText(CURRENTUSER + currentUserProfile.getName());
+            textView.setText(CURRENTUSER + CurrentUserProfile.profile.getName());
         }
     }
 

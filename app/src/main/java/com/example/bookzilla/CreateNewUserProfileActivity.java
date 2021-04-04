@@ -45,67 +45,36 @@ public class CreateNewUserProfileActivity extends AppCompatActivity {
             toast.show();
             return;
         }
-        /*
-        else if (UserAlreadyExists(usernameInput.getText().toString())) {
-            Toast toast = Toast.makeText(this, "Username is taken -- please try another", toastDuration);
-            toast.show();
-            return;
-        }
-         */
         else {
             // Create new userprofile & change to be current profile
-            UserProfile newProfile = new UserProfile(nameInput.getText().toString(), usernameInput.getText().toString());
-            CurrentUserProfile.profile = newProfile;
-            UpdateCurrentUserTextView();
-            WriteUserInfoToFile(UserProfileToDataString(CurrentUserProfile.profile));
+            UserProfile newProfile = CreateNewUser(usernameInput.getText().toString(), nameInput.getText().toString());
+            if (newProfile != null) {
+                CurrentUserProfile.profile = newProfile;
+                UpdateCurrentUserTextView();
 
-            /*
-            Toast toast = Toast.makeText(this, "Successfully made new user: " + CurrentUserProfile.profile.getUsername(), toastDuration);
-            toast.show();
-             */
+                Toast toast = Toast.makeText(this, "Successfully made new user: " + CurrentUserProfile.profile.getUsername(), toastDuration);
+                toast.show();
+            }
             return;
         }
     }
 
-    /* Writes the new userprofile information to the external database / text file */
-    private void WriteUserInfoToFile(String data) {
-        try {
-            FileOutputStream fileout = openFileOutput(userFileName, MODE_PRIVATE);
-            OutputStreamWriter outputWriter = new OutputStreamWriter(fileout);
-            outputWriter.write(data);
-            outputWriter.close();
-
-            Toast toast = Toast.makeText(this, "Successfully wrote to file", toastDuration);
-            toast.show();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /* Reads the text file to see if the user already exists */
-    private boolean UserAlreadyExists(String username) {
-        ArrayList<String> usernamesInUse = new ArrayList<String>();
-        try {
-            DataInputStream textFileStream = new DataInputStream(getAssets().open(String.format(userFileName)));
-            Scanner scanner = new Scanner(textFileStream);
-            while (scanner.hasNextLine()) {
-                if (scanner.next().equals(username)) {
-                    return true;
-                }
-                scanner.nextLine();
+    private UserProfile CreateNewUser(String username, String name) {
+        // Check to see if username is available
+        for (UserProfile profile : CurrentUserProfile.allUsers) {
+            if (profile.getUsername().equalsIgnoreCase(username)) {
+                Toast toast = Toast.makeText(this, "Username already in use. Please choose a different Username", toastDuration);
+                toast.show();
+                return null;
             }
-            scanner.close();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
         }
 
-        return false;
-    }
+        // Create new user if username available
+        UserProfile newUserProfile = new UserProfile(name, username);
 
-    private String UserProfileToDataString(UserProfile userProfile) {
-        // STRUCTURE: [Username] [Name]
-        return userProfile.getUsername() + " " + userProfile.getName() + "\n";
+        // Add to currentuserprofiles list
+        CurrentUserProfile.allUsers.add(newUserProfile);
+
+        return newUserProfile;
     }
 }

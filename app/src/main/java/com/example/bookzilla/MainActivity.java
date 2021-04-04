@@ -83,14 +83,26 @@ public class MainActivity extends AppCompatActivity {
 
     // TODO code for the button that navigates to the BookViewActivity -- delete when another way of navigation has been developed
     public void onGotoBookViewClick(View view) {
-        Intent intent = new Intent(this, BookViewActivity.class);
-        startActivity(intent);
+        if (CurrentUserProfile.profile == null) {
+            Toast toast = Toast.makeText(this, "Please select or create a user first!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        else {
+            Intent intent = new Intent(this, BookViewActivity.class);
+            startActivity(intent);
+        }
     }
 
     // TODO code for the button that navigates to the UserProfilePageActivity -- delete when another way of navigation has been developed
     public void onGotoUserProfileClick(View view) {
-        Intent intent = new Intent(this, UserProfilePageActivity.class);
-        startActivity(intent);
+        if (CurrentUserProfile.profile == null) {
+            Toast toast = Toast.makeText(this, "Please select or create a user first!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        else {
+            Intent intent = new Intent(this, UserProfilePageActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void onCreateNewUserProfileClick(View view) {
