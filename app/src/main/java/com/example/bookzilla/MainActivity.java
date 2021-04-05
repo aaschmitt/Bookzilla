@@ -30,11 +30,13 @@ class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedList
         //this is working code we need a book class, so we can get the book name
         if(item.equals("Wishlist")){
            book.setStatus(Book.Status.Wishlist);
+           wishlistActivity.addBook(book);
         }
         else if (item.equals("Reading")){
             if(book.getCurrentStatus() == Book.Status.Wishlist){
                 wishlistActivity.removeBook(book);
             }
+            wishlistActivity.addBook(book);
             book.setStatus(Book.Status.Reading);
         }
         else if(item.equals("Read")){
@@ -42,6 +44,7 @@ class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedList
                 wishlistActivity.removeBook(book);
             }
             book.setStatus(Book.Status.Read);
+            wishlistActivity.addBook(book);
         }
     }
 
