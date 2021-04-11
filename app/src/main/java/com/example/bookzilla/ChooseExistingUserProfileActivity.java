@@ -59,7 +59,8 @@ public class ChooseExistingUserProfileActivity extends AppCompatActivity {
         }
     }
 
-
-
+    public void onDeleteCurrentUserProfileClick(View view) {
+        UserProfileDataWriter.DeleteCurrentUserInfo(this);
+    }
 
 }

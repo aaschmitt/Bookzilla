@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
     /*-------------end for the code of dropdownBox---------------*/
+
     }
 
     // TODO code for the button that navigates to the BookViewActivity -- delete when another way of navigation has been developed

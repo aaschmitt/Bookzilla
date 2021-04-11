@@ -51,6 +51,7 @@ public class CreateNewUserProfileActivity extends AppCompatActivity {
             if (newProfile != null) {
                 CurrentUserProfile.profile = newProfile;
                 UpdateCurrentUserTextView();
+                UserProfileDataWriter.WriteCurrentUserInfo(this);
 
                 Toast toast = Toast.makeText(this, "Successfully made new user: " + CurrentUserProfile.profile.getUsername(), toastDuration);
                 toast.show();
