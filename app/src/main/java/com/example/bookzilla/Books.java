@@ -15,14 +15,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.core.view.MenuItemCompat;
 
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Books extends AppCompatActivity {
 
    ListView listView;
     ArrayList<String> stringArrayList = new ArrayList<>();
     ArrayAdapter<String> adapter;
-
+    Scanner scan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,9 +33,33 @@ public class Books extends AppCompatActivity {
 
 
     //populates the list with books
-    for(int i = 0; i<=100; i++) {
-        stringArrayList.add("Book " + i);
-    }
+        try {
+            InputStream fIn = getApplicationContext().getResources().getAssets()
+                    .open("BookList.txt", Context.MODE_WORLD_READABLE);
+
+            BufferedReader input = new BufferedReader(new InputStreamReader(fIn));
+            String line = "";
+            while ((line = input.readLine()) != null) {
+                stringArrayList.add(line);
+            }
+        }
+        catch (Exception e) {
+            e.getMessage();
+        }
+        /*
+        File file = new File("app/src/main/assets/BookList.txt");
+        try {
+            scan = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+ */
+        //for (int i = 0; i < 100; i++) {
+        //stringArrayList.add("Book " + i);
+   // }
+
+
     adapter = new ArrayAdapter<>(Books.this, android.R.layout.simple_list_item_1, stringArrayList);
     listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
