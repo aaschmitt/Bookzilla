@@ -1,5 +1,6 @@
 package com.example.bookzilla;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,6 +61,12 @@ public class BookViewActivity extends AppCompatActivity {
     public void onViewAnotherBookButtonClick(View view) {
         // Display a different book
         setBook(new Book("To Kill A Mockingbird", "Audrey Schmitt", "www.mywebsite.com"));
+    }
+
+    public void onWriteReviewButtonClick(View view) {
+        CurrentUserProfile.currentBook = book;
+        Intent intent = new Intent(this, WriteReviewActivity.class);
+        startActivity(intent);
     }
 
     /* Removes the book currently being displayed to the user's book list, if in the list */

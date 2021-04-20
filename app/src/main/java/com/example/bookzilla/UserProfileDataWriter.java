@@ -176,4 +176,50 @@ public class UserProfileDataWriter {
             return "NULL";
         }
     }
+
+    public static void SaveReview(Context context, Book book, String review) {
+        File dir = new File(context.getFilesDir(), "reviews");
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+
+        try {
+            File gpxfile = new File(dir, book.getTitle());
+            FileWriter writer = new FileWriter(gpxfile);
+            writer.append(review + "\n");
+            writer.flush();
+            writer.close();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static List<String> ReadReviews(Context context) {
+        List<String> reviews = new ArrayList<String>();
+
+        File dir = new File(context.getFilesDir(), "reviews");
+        File[] reviewFiles = dir.listFiles();
+        if (reviewFiles != null) {
+            for (File reviewFile : reviewFiles) {
+                StringBuilder sb = new StringBuilder();
+                sb.append("[" + reviewFile.getName() + "] ");
+
+                try {
+                    Scanner scanner = new Scanner(reviewFile);
+                    while (scanner.hasNextLine()) {
+                        sb.append(scanner.nextLine());
+                    }
+                    scanner.close();
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                reviews.add(sb.toString());
+            }
+        }
+
+        return reviews;
+    }
 }
