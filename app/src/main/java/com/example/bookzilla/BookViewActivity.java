@@ -51,6 +51,7 @@ public class BookViewActivity extends AppCompatActivity {
 
         // Book not found in user's list, add it
         CurrentUserProfile.profile.AddBook(book);
+        UserProfileDataWriter.WriteCurrentUserBookInfo(this);
         Toast toast = Toast.makeText(this, book.getTitle() + " was added to Favorites", toastDuration);
         toast.show();
     }
@@ -68,8 +69,9 @@ public class BookViewActivity extends AppCompatActivity {
         }
 
         for (Book book : CurrentUserProfile.profile.getBooks()) {
-            if (this.book.getTitle() == book.getTitle() && this.book.getAuthor() == book.getAuthor()) {
+            if (this.book.getTitle().equals(book.getTitle()) && this.book.getAuthor().equalsIgnoreCase(book.getAuthor())) {
                 CurrentUserProfile.profile.RemoveBook(book);
+                UserProfileDataWriter.WriteCurrentUserBookInfo(this);
                 Toast toast = Toast.makeText(this, "Removed " + book.getTitle() + " from Favorites", toastDuration);
                 toast.show();
                 return;

@@ -18,6 +18,12 @@ public class UserProfile {
 
     /* Public methods - - - - - - - - - - - - - - - - - - - - */
     public void AddBook(Book book) {
+        for (Book addedBook : getBooks()) {
+            if (addedBook.getTitle().equalsIgnoreCase(book.getTitle()) && addedBook.getAuthor().equalsIgnoreCase(book.getAuthor())) {
+                return;
+            }
+        }
+
         books.add(book);
     }
 
