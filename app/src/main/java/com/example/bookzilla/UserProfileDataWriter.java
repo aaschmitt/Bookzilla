@@ -121,7 +121,7 @@ public class UserProfileDataWriter {
     }
 
     public static void LoadAllUserInfo(Context context) {
-        if (ReadUsers(context).size() == 0) {
+        if (ReadUsers(context) == null ||ReadUsers(context).size() == 0) {
             return;
         }
 
