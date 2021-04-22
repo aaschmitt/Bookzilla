@@ -257,6 +257,8 @@
         <item>Zambia</item>
         <item>Zimbabwe</item>
     </string-array>
-    <string name="TEMP_WriteReview">Write Review</string>
+    <string name="TEMP_ViewReview">View Review</string>
     <string name="TEMP_saveReview">Save Review</string>
+    <string name="TEMP_WriteReview">Write New Review</string>
+    <string name="TEMP_Review">Review</string>
 </resources>

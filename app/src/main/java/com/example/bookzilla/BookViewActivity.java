@@ -63,10 +63,17 @@ public class BookViewActivity extends AppCompatActivity {
         setBook(new Book("To Kill A Mockingbird", "Audrey Schmitt", "www.mywebsite.com"));
     }
 
-    public void onWriteReviewButtonClick(View view) {
+    public void onViewReviewButtonClick(View view) {
         CurrentUserProfile.currentBook = book;
-        Intent intent = new Intent(this, WriteReviewActivity.class);
-        startActivity(intent);
+
+        if (UserProfileDataWriter.ReadReview(CurrentUserProfile.currentBook.getTitle(), this).length() > 1) {
+            Intent intent = new Intent(this, ReadReviewActivity.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(this, WriteReviewActivity.class);
+            startActivity(intent);
+        }
     }
 
     /* Removes the book currently being displayed to the user's book list, if in the list */

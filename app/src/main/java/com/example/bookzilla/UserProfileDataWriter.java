@@ -195,6 +195,42 @@ public class UserProfileDataWriter {
         }
     }
 
+    public static String ReadReview(String bookTitle, Context context) {
+        StringBuilder sb = new StringBuilder();
+
+        File dir = new File(context.getFilesDir(), "reviews");
+        File[] reviewFiles = dir.listFiles();
+        if (reviewFiles != null) {
+            for (File reviewFile : reviewFiles) {
+                if (reviewFile.getName().equalsIgnoreCase(bookTitle)) {
+                    try {
+                        Scanner scanner = new Scanner(reviewFile);
+                        while (scanner.hasNextLine()) {
+                            sb.append(scanner.nextLine());
+                        }
+                        scanner.close();
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        return sb.toString();
+    }
+
+    //TODO DELTE
+    public static String getFileName(Context context) {
+        File dir = new File(context.getFilesDir(), "reviews");
+        File[] reviewFiles = dir.listFiles();
+        if (reviewFiles != null) {
+            return reviewFiles[0].getName();
+        }
+        return "";
+    }
+    //TODO DELTE
+
     public static List<String> ReadReviews(Context context) {
         List<String> reviews = new ArrayList<String>();
 
