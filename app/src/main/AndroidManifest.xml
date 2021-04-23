@@ -23,6 +23,10 @@
                     android:value=".BookViewActivity"/>
         </activity>
         <activity android:name=".Books">
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".MainActivity"/>
         </activity>
         <activity android:name=".ChooseExistingUserProfileActivity">
             android:parentActivityName=".MainActivity" >
@@ -51,10 +55,10 @@
         </activity>
         <activity
                 android:name=".BookViewActivity"
-                android:parentActivityName=".MainActivity">
+                android:parentActivityName=".Books">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".MainActivity"/>
+                    android:value=".Books"/>
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>

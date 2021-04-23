@@ -121,8 +121,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToWishlist(View view){
-        Intent intent = new Intent(this, WishlistActivity.class);
-        startActivity(intent);
+        if (CurrentUserProfile.profile == null) {
+            Toast toast = Toast.makeText(this, "Please select or create a user first!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        else {
+            Intent intent = new Intent(this, WishlistActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void goToDatabase(View view){
@@ -131,8 +137,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToBooks(View view){
-        Intent intent = new Intent(this, Books.class);
-        startActivity(intent);
+        if (CurrentUserProfile.profile == null) {
+            Toast toast = Toast.makeText(this, "Please select or create a user first!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        else {
+            Intent intent = new Intent(this, Books.class);
+            startActivity(intent);
+        }
     }
 
     private void UpdateCurrentUserTextView() {

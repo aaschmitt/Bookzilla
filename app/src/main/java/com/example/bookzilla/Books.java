@@ -29,10 +29,10 @@ public class Books extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_books);
-    listView = findViewById(R.id.lv_listView);
+        listView = findViewById(R.id.lv_listView);
 
 
-    //populates the list with books
+         //populates the list with books
         try {
             InputStream fIn = getApplicationContext().getResources().getAssets()
                     .open("BookList.txt", Context.MODE_WORLD_READABLE);
@@ -65,7 +65,27 @@ public class Books extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), adapter.getItem(position), Toast.LENGTH_SHORT).show();
+
+                //TODO delete if this doesn't work
+                String[] bookInfo = adapter.getItem(position).split("\t");
+                String author = "";
+                for (int i = 1; i < bookInfo.length; i ++) {
+                    if (i != bookInfo.length - 1) {
+                        author += bookInfo[i]+" ";
+                    }
+                    else {
+                        author += bookInfo[i];
+                    }
+                }
+
+                Book book = new Book(bookInfo[0], author, "");
+                CurrentUserProfile.currentBook = book;
+
+                Toast.makeText(getApplicationContext(), author, Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(Books.this, BookViewActivity.class);
+                startActivity(intent);
+                //TODO delete if this doesn't work
             }
         });
     }
