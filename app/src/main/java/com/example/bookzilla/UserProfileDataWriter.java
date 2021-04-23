@@ -115,13 +115,7 @@ public class UserProfileDataWriter {
         }
 
         for (String readBook : readLines) {
-            if (readBook.equalsIgnoreCase("NULL")) {
-                continue;
-            }
             String[] bookInfo = readBook.split("_");
-            if (bookInfo.length <= 1) {
-                continue;
-            }
             profile.getBooks().add(new Book(bookInfo[0], bookInfo[1]));
         }
     }

@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.*;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -33,6 +36,7 @@ public class UserProfilePageActivity extends AppCompatActivity {
                 CurrentUserProfile.profile.getBookTitles()
         );
         listView.setAdapter(adapter);
+
         UpdateCurrentUserTextView();
     }
 

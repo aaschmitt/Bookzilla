@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class BookViewActivity extends AppCompatActivity {
+
+    private Book book;
+
     private int toastDuration = 2;
 
     private final String CURRENTBOOK = "Current Book: ";
@@ -16,6 +19,10 @@ public class BookViewActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        // TODO DELETE THIS BOOK AND USER (THEY WERE USED FOR TESTING) ------------------------------------------------------
+        book = new Book("Catcher in The Rye", "J.D. Salinger", "www.amazon.com/catcher_in_the_rye");
+        // TODO -------------------------------------------------------------------------------------------------------------
 
         ConfigureDisplays();
         System.out.println("App started!");
@@ -36,7 +43,7 @@ public class BookViewActivity extends AppCompatActivity {
 
         // Check to see if book is already in the user's list
         for (Book book : CurrentUserProfile.profile.getBooks()) {
-            if (CurrentUserProfile.currentBook.getTitle() == book.getTitle() && CurrentUserProfile.currentBook.getAuthor() == book.getAuthor()) {
+            if (this.book.getTitle() == book.getTitle() && this.book.getAuthor() == book.getAuthor()) {
                 Toast toast = Toast.makeText(this, book.getTitle() + " is already in your Favorites!", toastDuration);
                 toast.show();
                 return;
@@ -44,13 +51,21 @@ public class BookViewActivity extends AppCompatActivity {
         }
 
         // Book not found in user's list, add it
-        CurrentUserProfile.profile.AddBook(CurrentUserProfile.currentBook);
+        CurrentUserProfile.profile.AddBook(book);
         UserProfileDataWriter.WriteCurrentUserBookInfo(this);
-        Toast toast = Toast.makeText(this, CurrentUserProfile.currentBook.getTitle() + " was added to Favorites", toastDuration);
+        Toast toast = Toast.makeText(this, book.getTitle() + " was added to Favorites", toastDuration);
         toast.show();
     }
 
+    //TODO demo method -- displays functionality for viewing a different book in the bookview activity
+    public void onViewAnotherBookButtonClick(View view) {
+        // Display a different book
+        setBook(new Book("To Kill A Mockingbird", "Audrey Schmitt", "www.mywebsite.com"));
+    }
+
     public void onViewReviewButtonClick(View view) {
+        CurrentUserProfile.currentBook = book;
+
         if (UserProfileDataWriter.ReadReview(CurrentUserProfile.currentBook.getTitle(), this).length() > 1) {
             Intent intent = new Intent(this, ReadReviewActivity.class);
             startActivity(intent);
@@ -68,7 +83,7 @@ public class BookViewActivity extends AppCompatActivity {
         }
 
         for (Book book : CurrentUserProfile.profile.getBooks()) {
-            if (CurrentUserProfile.currentBook.getTitle().equals(book.getTitle()) && CurrentUserProfile.currentBook.getAuthor().equalsIgnoreCase(book.getAuthor())) {
+            if (this.book.getTitle().equals(book.getTitle()) && this.book.getAuthor().equalsIgnoreCase(book.getAuthor())) {
                 CurrentUserProfile.profile.RemoveBook(book);
                 UserProfileDataWriter.WriteCurrentUserBookInfo(this);
                 Toast toast = Toast.makeText(this, "Removed " + book.getTitle() + " from Favorites", toastDuration);
@@ -77,12 +92,12 @@ public class BookViewActivity extends AppCompatActivity {
             }
         }
 
-        Toast toast = Toast.makeText(this, CurrentUserProfile.currentBook.getTitle() + " is not in your Favorites!", toastDuration);
+        Toast toast = Toast.makeText(this, book.getTitle() + " is not in your Favorites!", toastDuration);
         toast.show();
     }
 
     private boolean isUserOrBookNull() {
-        if (CurrentUserProfile.currentBook == null || CurrentUserProfile.profile == null) {
+        if (book == null || CurrentUserProfile.profile == null) {
             Toast toast = Toast.makeText(this, "Failed -- Book or UserProfile is null!", 2);
             toast.show();
             return true;
@@ -92,18 +107,18 @@ public class BookViewActivity extends AppCompatActivity {
 
     /* Set the current book and reload page */
     public void setBook(Book book) {
-        CurrentUserProfile.currentBook = book;
+        this.book = book;
         ConfigureBookDisplay();
     }
 
     /* Refresh the Book UI */
     private void ConfigureBookDisplay() {
         TextView textView = (TextView) findViewById(R.id.textView);
-        if (CurrentUserProfile.currentBook == null) {
+        if (book == null) {
             textView.setText(CURRENTBOOK + "NULL");
         }
         else {
-            textView.setText(CURRENTBOOK + CurrentUserProfile.currentBook.getTitle());
+            textView.setText(CURRENTBOOK + book.getTitle());
         }
     }
 
