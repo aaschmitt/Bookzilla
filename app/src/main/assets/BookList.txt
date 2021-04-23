@@ -1,20 +1,19 @@
-Animal's People		Indra	Sinha
-Never Let Me Go 	Kazuo	Ishiguro
-Saturday 		Ian	McEwan
-Falling Man		Don	DeLillo
-The Reluctant Fundamentalist		Mohsin	Hamid
-Half of a Yellow Sun		Chimamanda Ngozi	Adichie
-The Kindly Ones			Jonathan	Littell
-A Short History of Tractors in Ukrainian	Marina	Lewycka
-The Inheritance of Loss	Kiran	Desai
-On Beauty 	Zadie	Smith
-Against the Day	Thomas 	Pynchon
-Slow Man 	J. M.	Coetzee
-Carry Me Down	M. J.	Hyland
-Mother's Milk	Edward	St. Aubyn
-Measuring the World	Daniel	Kehlmann
-Adjunct: An Undigest 	Peter	Manson
-The Sea 	John	Banville
+Animal's People Indra Sinha
+Never Let Me Go Kazuo Ishiguro
+Saturday Ian McEwan
+Falling Man	Don	DeLillo
+Half of a Yellow Sun Chimamanda Adichie
+The Kindly Ones	Jonathan Littell
+A Short History of Tractors in Ukrainian Marina	Lewycka
+The Inheritance of Loss	Kiran Desai
+On Beauty Zadie Smith
+Against the Day	Thomas Pynchon
+Slow Man J.M. Coetzee
+Carry Me Down M. J. Hyland
+Mother's Milk Edward St. Aubyn
+Measuring the World	Daniel Kehlmann
+Adjunct: An Undigest Peter Manson
+The Sea John Banville
 The Accidental	Ali	Smith
 The Line of Beauty	Alan	Hollinghurst
 The Red Queen 	Margaret	Drabble

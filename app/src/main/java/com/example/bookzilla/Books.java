@@ -25,6 +25,10 @@ public class Books extends AppCompatActivity {
     ArrayList<String> stringArrayList = new ArrayList<>();
     ArrayAdapter<String> adapter;
     Scanner scan;
+    String title;
+    String author;
+    String titleAuthor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,18 +50,7 @@ public class Books extends AppCompatActivity {
         catch (Exception e) {
             e.getMessage();
         }
-        /*
-        File file = new File("app/src/main/assets/BookList.txt");
-        try {
-            scan = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
 
- */
-        //for (int i = 0; i < 100; i++) {
-        //stringArrayList.add("Book " + i);
-   // }
 
 
     adapter = new ArrayAdapter<>(Books.this, android.R.layout.simple_list_item_1, stringArrayList);
@@ -66,6 +59,26 @@ public class Books extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), adapter.getItem(position), Toast.LENGTH_SHORT).show();
+                    titleAuthor= stringArrayList.get(position);
+                    String[] parts = titleAuthor.split(" ");
+                String[] parts2 = titleAuthor.split(" ");
+
+                    author = parts[parts.length-2]+" "+parts[parts.length-1];
+
+                //int i = parts2.length;
+                title = parts2[0]+" ";
+                for (int j = 1; j < parts2.length-2; j++) {
+                   String temptitle = parts2[j]+" ";
+                    title = title.concat(temptitle);
+                }
+
+
+                Intent intent = new Intent(Books.this,BookViewActivity.class);
+                intent.putExtra("keytitle",title);
+                intent.putExtra("keyauthor",author);
+                startActivity(intent);
+                //Toast.makeText(getApplicationContext(), adapter.getItem(position), Toast.LENGTH_SHORT).show();
+
             }
         });
     }

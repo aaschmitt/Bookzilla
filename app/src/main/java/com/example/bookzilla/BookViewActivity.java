@@ -15,13 +15,20 @@ public class BookViewActivity extends AppCompatActivity {
 
     private final String CURRENTBOOK = "Current Book: ";
     private final String CURRENTUSER = "Current User: ";
+    private TextView author,title;
 
     @Override
     protected void onStart() {
         super.onStart();
-
+        title = findViewById(R.id.textView4);
+        author = findViewById(R.id.textView5);
+        String theTitle = getIntent().getStringExtra("keytitle");
+        String theAuthor = getIntent().getStringExtra("keyauthor");
+        title.setText(theTitle);
+        author.setText(theAuthor);
+        book = new Book();
         // TODO DELETE THIS BOOK AND USER (THEY WERE USED FOR TESTING) ------------------------------------------------------
-        book = new Book("Catcher in The Rye", "J.D. Salinger", "www.amazon.com/catcher_in_the_rye");
+       book = new Book(theTitle, theAuthor, "www.amazon.com/catcher_in_the_rye");
         // TODO -------------------------------------------------------------------------------------------------------------
 
         ConfigureDisplays();
@@ -30,6 +37,12 @@ public class BookViewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //title = findViewById(R.id.textView4);
+        //author = findViewById(R.id.textView5);
+        //String theTitle = getIntent().getStringExtra("keytitile");
+        //String theAuthor = getIntent().getStringExtra("keyauthor");
+        //title.setText(theTitle);
+        //author.setText(theAuthor);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_view);
     }
