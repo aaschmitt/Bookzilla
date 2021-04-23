@@ -90,8 +90,6 @@ public class Books extends AppCompatActivity {
             }
         });
 
-
-
         return super.onCreateOptionsMenu(menu);
     }
 }

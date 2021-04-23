@@ -46,9 +46,8 @@ public class WishlistActivity extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
-        Book newBook = new Book("Book1", "Author1", "book1.com");
-
-        addBook(newBook);
+        //Book newBook = new Book("Book1", "Author1", "book1.com");
+        //addBook(newBook);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -92,7 +91,4 @@ public class WishlistActivity extends AppCompatActivity {
             return row;
         }
     }
-
-
-
 }

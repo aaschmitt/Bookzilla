@@ -52,6 +52,8 @@
             tools:ignore="OnClick" android:layout_marginBottom="8dp"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0.521" app:layout_constraintHorizontal_bias="0.498"/>
+
+
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -89,6 +91,20 @@
             android:onClick="goToBooks" app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintVertical_bias="0.335"/>
+    <Button
+            android:text="go to database"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/database_view"
+            android:layout_marginTop="8dp"
+            android:onClick="goToDatabase"
+            tools:ignore="OnClick" android:layout_marginBottom="8dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.1" app:layout_constraintHorizontal_bias="0.498"/>
+
+
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"

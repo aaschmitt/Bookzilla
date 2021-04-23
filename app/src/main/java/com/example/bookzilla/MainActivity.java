@@ -125,6 +125,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToDatabase(View view){
+        Intent intent = new Intent(this, DataBaseMain.class);
+        startActivity(intent);
+    }
+
     public void goToBooks(View view){
         Intent intent = new Intent(this, Books.class);
         startActivity(intent);
